@@ -5,7 +5,6 @@ import random
 from tkinter import filedialog
 from tkinter import *
 
-vec = pygame.math.Vector2
 ACC = 0.3
 FRIC = -0.10
 FPS = 60
@@ -15,3 +14,4 @@ HEIGHT = 350
 WIDTH = 700
 
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
+vec = pygame.math.Vector2

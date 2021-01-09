@@ -5,9 +5,10 @@ import random
 from tkinter import filedialog
 from tkinter import *
 
-from config import FPS_CLOCK, FPS
+from config import FPS_CLOCK, FPS, displaysurface
 from sprites.background import Background
 from sprites.ground import Ground
+from sprites.player import Player
 
 pygame.init() 
 
@@ -15,6 +16,7 @@ pygame.display.set_caption("Test Game")
 
 background = Background()
 ground = Ground()
+player = Player()
 
 while True:
   for event in pygame.event.get():
@@ -30,6 +32,7 @@ while True:
 
   background.render()
   ground.render()
+  displaysurface.blit(player.image, player.rect)
   
   pygame.display.update()
   FPS_CLOCK.tick(FPS)

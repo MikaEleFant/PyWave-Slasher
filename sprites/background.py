@@ -5,12 +5,12 @@ import random
 from tkinter import filedialog
 from tkinter import *
 
-from game import displaysurface
+from config import displaysurface
 
 class Background(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
-    self.bgimage = pygame.image.load("Background.png")
+    self.bgimage = pygame.image.load("assets/Background.png")
     self.bgX = 0
     self.bgY = 0
 

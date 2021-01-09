@@ -20,7 +20,10 @@ class Player(pygame.sprite.Sprite):
     self.direction = "RIGHT"
 
   def move(self):
-    pass
+    if abs(self.vel.x) > 0.3:
+      self.running = True
+    else:
+      self.running = False
   
   def update(self):
     pass

@@ -15,5 +15,5 @@ The tutorial is found here: *[Coder's Legacy's Pygame RPG Tutorial](https://code
 - Create movement animations
 - Create attack animations
 
-***Chang Ho Lee***
+***Chang Ho Lee***<br>
 **[LinkedIn Profile](https://www.linkedin.com/in/chang-ho-lee-72b96a19a/)**

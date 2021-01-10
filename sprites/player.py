@@ -50,6 +50,16 @@ class Player(pygame.sprite.Sprite):
       self.pos.x = WIDTH
 
     self.rect.midbottom = self.pos
+
+  def gravity_check(self, group):
+    hits = pygame.sprite.spritecollide(self, group, False)
+    if self.vel.y > 0:
+      if hits:
+        lowest = hits[0]
+        if self.pos.y < lowest.rect.bottom:
+          self.pos.y = lowest.rect.top + 1
+          self.vel.y = 0
+          self.jumping = False
   
   def update(self):
     pass

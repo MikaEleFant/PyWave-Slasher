@@ -18,8 +18,11 @@ class Player(pygame.sprite.Sprite):
     self.vel = vec(0, 0)
     self.acc = vec(0, 0)
     self.direction = "RIGHT"
+    self.jumping = False
 
   def move(self):
+    self.acc = vec(0, 0.5)
+
     if abs(self.vel.x) > 0.3:
       self.running = True
     else:

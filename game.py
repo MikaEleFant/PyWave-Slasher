@@ -33,7 +33,8 @@ while True:
       pass
     
     if event.type == pygame.KEYDOWN:
-      pass
+      if event.key == pygame.K_w:
+        player.jump(ground_group)
 
   background.render()
   ground.render()

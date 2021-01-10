@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
     self.acc = vec(0, 0)
     self.direction = "RIGHT"
     self.jumping = False
+    self.double_jumping = False
 
   def move(self):
     self.acc = vec(0, 0.5)
@@ -30,9 +31,9 @@ class Player(pygame.sprite.Sprite):
 
     pressed_keys = pygame.key.get_pressed()
 
-    if pressed_keys[K_LEFT]:
+    if pressed_keys[K_a]:
       self.acc.x = -ACC
-    if pressed_keys[K_RIGHT]:
+    if pressed_keys[K_d]:
       self.acc.x = ACC
 
     self.acc.x += self.vel.x * FRIC
@@ -60,12 +61,23 @@ class Player(pygame.sprite.Sprite):
           self.pos.y = lowest.rect.top + 1
           self.vel.y = 0
           self.jumping = False
+          self.double_jumping = False
+
+  def jump(self, group):
+    self.rect.x += 1
+    hits = pygame.sprite.spritecollide(self, group, False)
+    self.rect.x -= 1
+
+    if hits and not self.jumping:
+      self.jumping = True
+      self.vel.y = -8
+    if not hits and self.jumping:
+      self.jumping = False
+      self.double_jumping = True
+      self.vel.y = -8
   
   def update(self):
     pass
   
   def attack(self):
-    pass
-
-  def jump(self):
     pass

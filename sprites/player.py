@@ -36,6 +36,11 @@ class Player(pygame.sprite.Sprite):
     self.vel += self.acc
     self.pos += self.vel + self.acc / 2
 
+    if self.vel.x > 0:
+      self.image  = pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png")
+    if self.vel.x < 0:
+      self.image = pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png")
+
     if self.pos.x > WIDTH:
       self.pos.x = 0
     if self.pos.x < 0:

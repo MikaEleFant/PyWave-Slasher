@@ -28,10 +28,11 @@ while True:
       pass
     
     if event.type == pygame.KEYDOWN:
-      pass   
+      pass
 
   background.render()
   ground.render()
+  player.move()
   displaysurface.blit(player.image, player.rect)
   
   pygame.display.update()

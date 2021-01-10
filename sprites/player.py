@@ -5,7 +5,7 @@ import random
 from tkinter import filedialog
 from tkinter import *
 
-from config import vec
+from config import vec, ACC, FRIC, WIDTH
 
 class Player(pygame.sprite.Sprite):
   def __init__(self):
@@ -24,6 +24,24 @@ class Player(pygame.sprite.Sprite):
       self.running = True
     else:
       self.running = False
+
+    pressed_keys = pygame.key.get_pressed()
+
+    if pressed_keys[K_LEFT]:
+      self.acc.x = -ACC
+    if pressed_keys[K_RIGHT]:
+      self.acc.x = ACC
+
+    self.acc.x += self.vel.x * FRIC
+    self.vel += self.acc
+    self.pos += self.vel + self.acc / 2
+
+    if self.pos.x > WIDTH:
+      self.pos.x = 0
+    if self.pos.x < 0:
+      self.pos.x = WIDTH
+
+    self.rect.midbottom = self.pos
   
   def update(self):
     pass

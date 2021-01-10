@@ -6,6 +6,7 @@ from tkinter import filedialog
 from tkinter import *
 
 from config import FPS_CLOCK, FPS, displaysurface
+
 from sprites.background import Background
 from sprites.ground import Ground
 from sprites.player import Player
@@ -17,6 +18,8 @@ pygame.display.set_caption("Test Game")
 background = Background()
 ground = Ground()
 player = Player()
+ground_group = pygame.sprite.Group()
+ground_group.add(ground)
 
 while True:
   for event in pygame.event.get():

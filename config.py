@@ -5,9 +5,9 @@ import random
 from tkinter import filedialog
 from tkinter import *
 
-ACC = 0.3
-FRIC = -0.10
-FPS = 60
+ACC = 0.15
+FRIC = -0.05
+FPS = 120
 FPS_CLOCK = pygame.time.Clock()
 COUNT = 0
 HEIGHT = 350

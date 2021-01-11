@@ -7,6 +7,25 @@ from tkinter import *
 
 from config import vec, ACC, FRIC, WIDTH
 
+run_animation_R = [
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite2_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite3_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite4_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite5_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite6_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png")
+  ]
+run_animation_L = [
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite2_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite3_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite4_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite5_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite6_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png")
+  ]
+
 class Player(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
@@ -20,11 +39,12 @@ class Player(pygame.sprite.Sprite):
     self.direction = "RIGHT"
     self.jumping = False
     self.double_jumping = False
+    self.move_frame = 0
 
   def move(self):
-    self.acc = vec(0, 0.5)
+    self.acc = vec(0, 0.25)
 
-    if abs(self.vel.x) > 0.3:
+    if abs(self.vel.x) > 0.15:
       self.running = True
     else:
       self.running = False
@@ -39,11 +59,6 @@ class Player(pygame.sprite.Sprite):
     self.acc.x += self.vel.x * FRIC
     self.vel += self.acc
     self.pos += self.vel + self.acc / 2
-
-    if self.vel.x > 0:
-      self.image  = pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png")
-    if self.vel.x < 0:
-      self.image = pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png")
 
     if self.pos.x > WIDTH:
       self.pos.x = 0
@@ -77,7 +92,25 @@ class Player(pygame.sprite.Sprite):
       self.vel.y = -8
   
   def update(self):
-    pass
+    if self.move_frame > 6:
+      self.move_frame = 0
+      return
+    
+    if (self.jumping == False and self.double_jumping == False) and self.running == True:
+      if self.vel.x > 0:
+        self.image = run_animation_R[round(self.move_frame)]
+        self.direction = "RIGHT"
+      elif self.vel.x < 0:
+        self.image = run_animation_L[round(self.move_frame)]
+        self.direction = "LEFT"
+      self.move_frame += 0.25
+
+    if abs(self.vel.x) < 0.1 and self.move_frame != 0:
+      self.move_frame = 0
+      if self.direction == "RIGHT":
+        self.image = run_animation_R[self.move_frame]
+      elif self.direction == "LEFT":
+        self.image = run_animation_L[self.move_frame]
   
   def attack(self):
     pass

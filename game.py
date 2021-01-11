@@ -39,6 +39,7 @@ while True:
   background.render()
   ground.render()
   player.move()
+  player.update()
   displaysurface.blit(player.image, player.rect)
   
   pygame.display.update()

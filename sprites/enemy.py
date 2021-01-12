@@ -4,7 +4,40 @@ import sys
 import random
 from tkinter import filedialog
 from tkinter import *
+import random
 
-class Enemy(pygame.sprite.Sprite):
+from config import vec, WIDTH, displaysurface
+
+class Slime(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
+    self.image = pygame.image.load("assets/Enemy/Slime.png")
+    self.rect = self.image.get_rect()
+    self.pos = vec(0, 0)
+    self.vel = vec(0, 0)
+    self.direction = random.randint(0, 1)
+
+    self.vel.x = random.randint(2, 6) / 4
+
+    if self.direction == 0:
+      self.pos.x = 0
+      self.pos.y = 230
+    if self.direction == 1:
+      self.pos.x = 700
+      self.pos.y = 230
+
+  def move(self):
+    if self.pos.x >= (WIDTH - 20):
+      self.direction = 1
+    elif self.pos.x <= 20:
+      self.direction = 0
+
+    if self.direction == 0:
+      self.pos.x += self.vel.x
+    if self.direction == 1:
+      self.pos.x -= self.vel.x
+
+    self.rect.center = self.pos
+
+  def render(self):
+    displaysurface.blit(self.image, (self.pos.x, self.pos.y))

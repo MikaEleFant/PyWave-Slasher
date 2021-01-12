@@ -1,6 +1,6 @@
 # PyWave-Slasher
 
-A 2D action scroller game created with the Pygame library. Heavily referencing Coder's Legacy's tutorial online, it offers a unique twist on action games by forcing players to only use magic as well as to choose between a wide range of spells for learning.
+A 2D action scroller game created with the Pygame library. Heavily referencing Coder's Legacy's tutorial online for now, I intend to create a unique game by putting my own twist on the mechanics and enemies of this game.
 
 Work In Progress.
 

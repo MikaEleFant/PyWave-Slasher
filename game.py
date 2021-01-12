@@ -10,6 +10,7 @@ from config import FPS_CLOCK, FPS, displaysurface
 from sprites.background import Background
 from sprites.ground import Ground
 from sprites.player import Player
+from sprites.enemy import Slime
 
 pygame.init() 
 
@@ -18,6 +19,7 @@ pygame.display.set_caption("Test Game")
 background = Background()
 ground = Ground()
 player = Player()
+slime = Slime()
 ground_group = pygame.sprite.Group()
 ground_group.add(ground)
 
@@ -46,6 +48,8 @@ while True:
   background.render()
 
   ground.render()
+
+  slime.render()
 
   player.move()
   player.update()

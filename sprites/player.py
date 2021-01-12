@@ -148,8 +148,6 @@ class Player(pygame.sprite.Sprite):
 
   def attack_correction_L(self):
     if self.attack_frame == 1.25:
-      print(self.pos.x)
       self.pos.x -= 20
     if self.attack_frame == 6.5:
-      print(self.pos.x)
       self.pos.x += 20

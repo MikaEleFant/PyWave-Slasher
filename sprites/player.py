@@ -142,5 +142,14 @@ class Player(pygame.sprite.Sprite):
     if self.direction == "RIGHT":
       self.image = attack_animation_R[round(self.attack_frame)]
     elif self.direction == "LEFT":
+      self.attack_correction_L()
       self.image = attack_animation_L[round(self.attack_frame)]
     self.attack_frame += 0.25
+
+  def attack_correction_L(self):
+    if self.attack_frame == 1.25:
+      print(self.pos.x)
+      self.pos.x -= 20
+    if self.attack_frame == 6.5:
+      print(self.pos.x)
+      self.pos.x += 20

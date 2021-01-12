@@ -22,6 +22,7 @@ ground_group = pygame.sprite.Group()
 ground_group.add(ground)
 
 while True:
+  keys = pygame.key.get_pressed()
   player.gravity_check(ground_group)
 
   for event in pygame.event.get():
@@ -30,16 +31,26 @@ while True:
       sys.exit() 
           
     if event.type == pygame.MOUSEBUTTONDOWN:
-      pass
+      if player.attacking == False:
+          player.attack()
+          player.attacking = True
     
     if event.type == pygame.KEYDOWN:
       if event.key == pygame.K_w:
         player.jump(ground_group)
+      if event.key == pygame.K_SPACE:
+        if player.attacking == False:
+          player.attack()
+          player.attacking = True
 
   background.render()
+
   ground.render()
+
   player.move()
   player.update()
+  if player.attacking == True:
+    player.attack()
   displaysurface.blit(player.image, player.rect)
   
   pygame.display.update()

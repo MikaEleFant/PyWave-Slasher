@@ -25,6 +25,26 @@ run_animation_L = [
     pygame.image.load("assets/Player_Movement_Animations/Player_Sprite6_L.png"),
     pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png")
   ]
+attack_animation_R = [
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack2_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack3_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack4_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack5_R.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack5_R.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_R.png")
+]
+attack_animation_L = [
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack2_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack3_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack4_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack5_L.png"),
+    pygame.image.load("assets/Player_Attack_Animations/Player_Attack5_L.png"),
+    pygame.image.load("assets/Player_Movement_Animations/Player_Sprite_L.png")
+]
 
 class Player(pygame.sprite.Sprite):
   def __init__(self):
@@ -40,6 +60,8 @@ class Player(pygame.sprite.Sprite):
     self.jumping = False
     self.double_jumping = False
     self.move_frame = 0
+    self.attacking = False
+    self.attack_frame = 0
 
   def move(self):
     self.acc = vec(0, 0.25)
@@ -85,11 +107,11 @@ class Player(pygame.sprite.Sprite):
 
     if hits and not self.jumping:
       self.jumping = True
-      self.vel.y = -8
+      self.vel.y = -6
     if not hits and self.jumping:
       self.jumping = False
       self.double_jumping = True
-      self.vel.y = -8
+      self.vel.y = -6
   
   def update(self):
     if self.move_frame > 6:
@@ -113,4 +135,12 @@ class Player(pygame.sprite.Sprite):
         self.image = run_animation_L[self.move_frame]
   
   def attack(self):
-    pass
+    if self.attack_frame > 7:
+      self.attack_frame = 0
+      self.attacking = False
+
+    if self.direction == "RIGHT":
+      self.image = attack_animation_R[round(self.attack_frame)]
+    elif self.direction == "LEFT":
+      self.image = attack_animation_L[round(self.attack_frame)]
+    self.attack_frame += 0.25

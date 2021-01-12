@@ -8,12 +8,11 @@ The tutorial is found here: *[Coder's Legacy's Pygame RPG Tutorial](https://code
 
 ## Current Task(s)
 
-- Implement gravity and player jumping mechanics
-
-## Next Task(s)
-
-- Create movement animations
-- Create attack animations
+- Create enemy class
+- Generate stages
+- Generate enemies
+- Implement damage
+- Implement player health
 
 ***Chang Ho Lee***<br>
 **[LinkedIn Profile](https://www.linkedin.com/in/chang-ho-lee-72b96a19a/)**

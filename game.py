@@ -50,6 +50,7 @@ while True:
   ground.render()
 
   slime.render()
+  slime.move()
 
   player.move()
   player.update()

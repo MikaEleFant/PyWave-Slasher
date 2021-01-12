@@ -12,6 +12,7 @@ class Slime(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
     self.image = pygame.image.load("assets/Enemy/Slime.png")
+    self.image = pygame.transform.scale(self.image, (75, 40))
     self.rect = self.image.get_rect()
     self.pos = vec(0, 0)
     self.vel = vec(0, 0)
@@ -21,15 +22,15 @@ class Slime(pygame.sprite.Sprite):
 
     if self.direction == 0:
       self.pos.x = 0
-      self.pos.y = 230
+      self.pos.y = 260
     if self.direction == 1:
       self.pos.x = 700
-      self.pos.y = 230
+      self.pos.y = 260
 
   def move(self):
-    if self.pos.x >= (WIDTH - 20):
+    if self.pos.x >= (WIDTH - 60):
       self.direction = 1
-    elif self.pos.x <= 20:
+    elif self.pos.x <= 0:
       self.direction = 0
 
     if self.direction == 0:

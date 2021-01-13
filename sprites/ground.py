@@ -10,8 +10,9 @@ from config import displaysurface
 class Ground(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
-    self.image = pygame.image.load("assets/Ground.png")
-    self.rect = self.image.get_rect(center = (350, 350))
+    self.image = pygame.image.load("assets/Grassland_Ground.png")
+    self.image = pygame.transform.scale(self.image, (732, 350))
+    self.rect = pygame.Rect(0, 200, 732, 400)
 
   def render(self):
-    displaysurface.blit(self.image, (self.rect.x, self.rect.y))
+    displaysurface.blit(self.image, (0, 0))

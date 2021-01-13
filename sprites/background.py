@@ -10,7 +10,8 @@ from config import displaysurface
 class Background(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
-    self.bgimage = pygame.image.load("assets/Background.png")
+    self.bgimage = pygame.image.load("assets/Grassland_Background.png")
+    self.bgimage = pygame.transform.scale(self.bgimage, (732, 300))
     self.bgX = 0
     self.bgY = 0
 

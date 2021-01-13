@@ -45,9 +45,9 @@ while True:
           player.attack()
           player.attacking = True
 
-  background.render()
-
   ground.render()
+
+  background.render()
 
   slime.render()
   slime.move()

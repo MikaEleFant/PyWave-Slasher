@@ -13,5 +13,10 @@ Work In Progress.
 - Implement damage
 - Implement player health
 
+### Assets
+
+- **Player Sprite & Animation:** [Coder's Legacy: Pygame RPG Tutorial](https://coderslegacy.com/python/pygame-rpg-player-movement/)
+- **All other assets:** Free assets from RPGMaker VX Ace
+
 ***Chang Ho Lee***<br>
 **[LinkedIn Profile](https://www.linkedin.com/in/chang-ho-lee-72b96a19a/)**

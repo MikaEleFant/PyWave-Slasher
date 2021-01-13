@@ -20,8 +20,8 @@ background = Background()
 ground = Ground()
 player = Player()
 slime = Slime()
-ground_group = pygame.sprite.Group()
-ground_group.add(ground)
+# ground_group = pygame.sprite.Group()
+# ground_group.add(ground)
 
 while True:
   keys = pygame.key.get_pressed()
@@ -48,7 +48,7 @@ while True:
   background.render()
 
   slime.render()
-  slime.move()
+  slime.move(player.pos)
 
   player.move()
   player.update()

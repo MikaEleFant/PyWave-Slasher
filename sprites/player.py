@@ -92,7 +92,7 @@ class Player(pygame.sprite.Sprite):
 
     self.rect.midbottom = self.pos
 
-  def gravity_check(self, group):
+  def gravity_check(self):
     if self.pos.y >= 355:
       self.pos.y = 354
       self.vel.y = 0

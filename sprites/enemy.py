@@ -18,7 +18,7 @@ class Slime(pygame.sprite.Sprite):
     self.vel = vec(0, 0)
     self.direction = random.randint(0, 1)
 
-    self.vel.x = random.randint(2, 6) / 4
+    self.vel.x, self.vel.y = random.randint(2, 6) / 2, random.randint(2, 6) / 2
 
     if self.direction == 0:
       self.pos.x = 0
@@ -27,16 +27,19 @@ class Slime(pygame.sprite.Sprite):
       self.pos.x = 700
       self.pos.y = 260
 
-  def move(self):
-    if self.pos.x >= (WIDTH - 60):
-      self.direction = 1
-    elif self.pos.x <= 0:
-      self.direction = 0
+  def move(self, player_pos):
+    corrected_pos_x = self.pos.x + 40
+    corrected_pos_y = self.pos.y + 40
 
-    if self.direction == 0:
+    if player_pos[0] > corrected_pos_x:
       self.pos.x += self.vel.x
-    if self.direction == 1:
+    elif player_pos[0] < corrected_pos_x:
       self.pos.x -= self.vel.x
+
+    if player_pos[1] > corrected_pos_y:
+      self.pos.y += self.vel.y
+    elif player_pos[1] < corrected_pos_y:
+      self.pos.y -= self.vel.y
 
     self.rect.center = self.pos
 

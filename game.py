@@ -38,8 +38,6 @@ while True:
           player.attacking = True
     
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_w:
-        player.jump(ground_group)
       if event.key == pygame.K_SPACE:
         if player.attacking == False:
           player.attack()

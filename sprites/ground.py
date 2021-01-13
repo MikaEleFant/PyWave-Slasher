@@ -12,7 +12,7 @@ class Ground(pygame.sprite.Sprite):
     super().__init__()
     self.image = pygame.image.load("assets/Grassland_Ground.png")
     self.image = pygame.transform.scale(self.image, (732, 350))
-    self.rect = pygame.Rect(0, 200, 732, 400)
+    self.rect = pygame.Rect(0, 200, 732, 355)
 
   def render(self):
     displaysurface.blit(self.image, (0, 0))

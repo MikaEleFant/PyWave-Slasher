@@ -57,14 +57,12 @@ class Player(pygame.sprite.Sprite):
     self.vel = vec(0, 0)
     self.acc = vec(0, 0)
     self.direction = "RIGHT"
-    self.jumping = False
-    self.double_jumping = False
     self.move_frame = 0
     self.attacking = False
     self.attack_frame = 0
 
   def move(self):
-    self.acc = vec(0, 0.25)
+    self.acc = vec(0, 0)
 
     if abs(self.vel.x) > 0.15:
       self.running = True
@@ -75,10 +73,15 @@ class Player(pygame.sprite.Sprite):
 
     if pressed_keys[K_a]:
       self.acc.x = -ACC
-    if pressed_keys[K_d]:
+    elif pressed_keys[K_d]:
       self.acc.x = ACC
+    if pressed_keys[K_w]:
+      self.acc.y = -ACC
+    elif pressed_keys[K_s]:
+      self.acc.y = ACC
 
     self.acc.x += self.vel.x * FRIC
+    self.acc.y += self.vel.y * FRIC
     self.vel += self.acc
     self.pos += self.vel + self.acc / 2
 
@@ -90,35 +93,19 @@ class Player(pygame.sprite.Sprite):
     self.rect.midbottom = self.pos
 
   def gravity_check(self, group):
-    hits = pygame.sprite.spritecollide(self, group, False)
-    if self.vel.y > 0:
-      if hits:
-        lowest = hits[0]
-        if self.pos.y < lowest.rect.bottom:
-          self.pos.y = lowest.rect.top + 1
-          self.vel.y = 0
-          self.jumping = False
-          self.double_jumping = False
+    if self.pos.y >= 355:
+      self.pos.y = 354
+      self.vel.y = 0
+    if self.pos.y <= 175:
+      self.pos.y = 175
+      self.vel.y = 0
 
-  def jump(self, group):
-    self.rect.x += 1
-    hits = pygame.sprite.spritecollide(self, group, False)
-    self.rect.x -= 1
-
-    if hits and not self.jumping:
-      self.jumping = True
-      self.vel.y = -6
-    if not hits and self.jumping:
-      self.jumping = False
-      self.double_jumping = True
-      self.vel.y = -6
-  
   def update(self):
     if self.move_frame > 6:
       self.move_frame = 0
       return
     
-    if (self.jumping == False and self.double_jumping == False) and self.running == True:
+    if self.running == True:
       if self.vel.x > 0:
         self.image = run_animation_R[round(self.move_frame)]
         self.direction = "RIGHT"

@@ -60,6 +60,8 @@ class Player(pygame.sprite.Sprite):
     self.move_frame = 0
     self.attacking = False
     self.attack_frame = 0
+    self.hp = 100
+    self.iframe = False
 
   def move(self):
     self.acc = vec(0, 0)
@@ -138,3 +140,20 @@ class Player(pygame.sprite.Sprite):
       self.pos.x -= 20
     if self.attack_frame == 6.5:
       self.pos.x += 20
+
+  def hit(self, enemy, enemy_group, hit_cooldown):
+    hits = pygame.sprite.spritecollide(self, enemy_group, False)
+
+    if enemy.stunned == False:
+      if hits and not self.attacking:
+        if self.iframe == False:
+          self.iframe = True
+          self.hp -= 5
+          pygame.time.set_timer(hit_cooldown, 1000)
+    print(self.hp)
+
+  def dead(self):
+    if self.hp == 0:
+      pass
+    # death animation
+    # show end game screen

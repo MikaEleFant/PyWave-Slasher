@@ -17,6 +17,8 @@ class Slime(pygame.sprite.Sprite):
     self.pos = vec(0, 0)
     self.vel = vec(0, 0)
     self.direction = random.randint(0, 1)
+    self.hp = 20
+    self.stunned = False
 
     self.vel.x, self.vel.y = random.randint(2, 6) / 2, random.randint(2, 6) / 2
 
@@ -45,3 +47,17 @@ class Slime(pygame.sprite.Sprite):
 
   def render(self):
     displaysurface.blit(self.image, (self.pos.x, self.pos.y))
+
+  def hit(self, player_group, player, enemy_stun_cooldown):
+    hits = pygame.sprite.spritecollide(self, player_group, False)
+
+    if hits and player.attacking:
+      if self.stunned == False:
+        if player.direction == "RIGHT" and player.pos.x < self.pos.x:
+          self.hp -= 10
+          self.stunned = True
+          pygame.time.set_timer(enemy_stun_cooldown, 1000)
+        elif player.direction == "LEFT" and player.pos.x + 20 > self.pos.x:
+          self.hp -= 10
+          self.stunned = True
+          pygame.time.set_timer(enemy_stun_cooldown, 1000)

@@ -13,5 +13,8 @@ COUNT = 0
 HEIGHT = 350
 WIDTH = 700
 
+hit_cooldown = pygame.USEREVENT + 1
+enemy_stun_cooldown = pygame.USEREVENT + 1
+
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
 vec = pygame.math.Vector2

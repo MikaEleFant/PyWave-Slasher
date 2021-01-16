@@ -8,10 +8,10 @@ Work In Progress.
 
 ## Current Task(s)
 
-- Generate stages
-- Generate enemies
-- Implement damage
-- Implement player health
+- Generate stages with natural enemy generation
+- Implement ramping difficulty
+- Create more enemies
+- Create more attack methods
 
 ### Assets
 

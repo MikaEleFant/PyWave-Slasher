@@ -144,7 +144,7 @@ class Player(pygame.sprite.Sprite):
   def hit(self, enemy, enemy_group, hit_cooldown):
     hits = pygame.sprite.spritecollide(self, enemy_group, False)
 
-    if enemy.stunned == False:
+    if enemy.stunned == False and enemy.hp != 0:
       if hits and not self.attacking:
         if self.iframe == False:
           self.iframe = True

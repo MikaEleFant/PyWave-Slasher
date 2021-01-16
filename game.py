@@ -57,19 +57,25 @@ while True:
 
   background.render()
 
-  if slime.hp != 0:
-    slime.render()
-  if not slime.stunned:
-    slime.move(player.pos)
-
-  player.move()
-  player.update()
-  player.hit(slime, enemy_group, hit_cooldown)
-  slime.hit(player_group, player, enemy_stun_cooldown)
-  if player.attacking == True:
-    player.attack()
   if player.hp != 0:
     displaysurface.blit(player.image, player.rect)
+    player.move()
+    player.update()
+    player.hit(slime, enemy_group, hit_cooldown)
+  else:
+    player.kill()
+  
+  if player.attacking == True:
+    player.attack()
+  
+  if slime.hp != 0:
+    slime.render()
+    slime.hit(player_group, player, enemy_stun_cooldown)
+  else:
+    slime.kill()
+    
+  if not slime.stunned:
+    slime.move(player.pos)
   
   pygame.display.update()
   FPS_CLOCK.tick(FPS)

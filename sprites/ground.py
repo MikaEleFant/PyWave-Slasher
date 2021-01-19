@@ -8,9 +8,9 @@ from tkinter import *
 from config import displaysurface
 
 class Ground(pygame.sprite.Sprite):
-  def __init__(self):
+  def __init__(self, ground):
     super().__init__()
-    self.image = pygame.image.load("assets/Grassland_Ground.png")
+    self.image = pygame.image.load(ground)
     self.image = pygame.transform.scale(self.image, (732, 350))
     self.rect = pygame.Rect(0, 200, 732, 355)
 

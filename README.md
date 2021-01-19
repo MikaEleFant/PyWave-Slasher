@@ -9,9 +9,19 @@ Work In Progress.
 ## Current Task(s)
 
 - Generate stages with natural enemy generation
-- Implement ramping difficulty
+  - Import more stage assets
+  - Implement multiple enemy generation
+  - Implement stage clear
+  - Implement next stage & ramping difficulty
 - Create more enemies
+  - Import more enemy assets
+  - Implement more enemy mechanics
+  - Implement boss monsters
 - Create more attack methods
+  - Import attack assets
+  - Implement counters
+  - Implement elemental / responding attacks (natural counters)
+  - Implement a charging attack
 
 ### Assets
 

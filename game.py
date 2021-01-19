@@ -10,14 +10,16 @@ from config import FPS_CLOCK, FPS, displaysurface, hit_cooldown, enemy_stun_cool
 from sprites.background import Background
 from sprites.ground import Ground
 from sprites.player import Player
-from sprites.enemy import Slime
+from sprites.enemies.slime import Slime
+from stage import stages
 
 pygame.init() 
 
 pygame.display.set_caption("Test Game")
+stage = stages[0]
 
-background = Background()
-ground = Ground()
+background = Background(stage["background"])
+ground = Ground(stage["ground"])
 player = Player()
 slime = Slime()
 enemy_group = pygame.sprite.Group()

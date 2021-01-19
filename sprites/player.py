@@ -150,10 +150,3 @@ class Player(pygame.sprite.Sprite):
           self.iframe = True
           self.hp -= 5
           pygame.time.set_timer(hit_cooldown, 1000)
-    print(self.hp)
-
-  def dead(self):
-    if self.hp == 0:
-      pass
-    # death animation
-    # show end game screen

@@ -62,6 +62,7 @@ class Player(pygame.sprite.Sprite):
     self.attack_frame = 0
     self.hp = 100
     self.iframe = False
+    self.normal_attack_frames = 10
 
   def move(self):
     self.acc = vec(0, 0)
@@ -141,12 +142,11 @@ class Player(pygame.sprite.Sprite):
     if self.attack_frame == 6.5:
       self.pos.x += 20
 
-  def hit(self, enemy, enemy_group, hit_cooldown):
-    hits = pygame.sprite.spritecollide(self, enemy_group, False)
-
+  def hit(self, enemy, hit_cooldown):
     if enemy.stunned == False and enemy.hp != 0:
-      if hits and not self.attacking:
+      if not self.attacking:
         if self.iframe == False:
           self.iframe = True
           self.hp -= 5
-          pygame.time.set_timer(hit_cooldown, 1000)
+          self.vel.x, self.vel.y = 0, 0
+          pygame.time.set_timer(hit_cooldown, enemy.attack_frames * 200)

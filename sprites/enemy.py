@@ -48,8 +48,11 @@ class Enemy(pygame.sprite.Sprite):
         if player.direction == "RIGHT" and player.pos.x < self.pos.x:
           self.hp -= 10
           self.stunned = True
-          pygame.time.set_timer(enemy_stun_cooldown, 1000)
+          pygame.time.set_timer(enemy_stun_cooldown, player.normal_attack_frames * 100)
         elif player.direction == "LEFT" and player.pos.x > self.pos.x:
           self.hp -= 10
           self.stunned = True
-          pygame.time.set_timer(enemy_stun_cooldown, 1000)
+          pygame.time.set_timer(enemy_stun_cooldown, player.normal_attack_frames * 100)
+          
+    if self.stunned == True:
+      displaysurface.blit(player.attack_image, (self.pos.x, self.pos.y), (192, 192))

@@ -11,9 +11,10 @@ from ..enemy import Enemy
 class Slime(Enemy):
   def __init__(self):
     super(Slime, self).__init__()
-    self.image = pygame.image.load("assets/Enemy/Slime.png")
+    self.image = pygame.image.load("assets/Enemy/Slime/Slime.png")
     self.image = pygame.transform.scale(self.image, (75, 40))
     self.rect = self.image.get_rect()
+    self.attack_frames = 3
 
     self.vel.x, self.vel.y = random.randint(2, 6) / 2, random.randint(2, 6) / 2
 
@@ -46,3 +47,4 @@ class Slime(Enemy):
           self.hp -= 10
           self.stunned = True
           pygame.time.set_timer(enemy_stun_cooldown, 1000)
+        

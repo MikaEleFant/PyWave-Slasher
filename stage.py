@@ -1,7 +1,7 @@
 stages = [
   {
-    "background": "assets/Grassland_Background.png",
-    "ground": "assets/Grassland_Ground.png",
+    "background": "assets/Backgrounds/Grassland_Background.png",
+    "ground": "assets/Grounds/Grassland_Ground.png",
     "enemytypes": ["Slime"],
     "enemynumbers": [5]
   }

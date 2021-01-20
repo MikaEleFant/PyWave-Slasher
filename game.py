@@ -11,6 +11,7 @@ from sprites.background import Background
 from sprites.ground import Ground
 from sprites.player import Player
 from sprites.enemies.slime import Slime
+from sprites.attacks.slime_attack import SlimeAttack
 from stage import stages
 
 pygame.init() 
@@ -22,10 +23,13 @@ background = Background(stage["background"])
 ground = Ground(stage["ground"])
 player = Player()
 slime = Slime()
+slime_atk = SlimeAttack()
 enemy_group = pygame.sprite.Group()
 enemy_group.add(slime)
 player_group = pygame.sprite.Group()
 player_group.add(player)
+
+hits = pygame.sprite.spritecollide(player, enemy_group, False)
 
 while True:
   keys = pygame.key.get_pressed()
@@ -63,21 +67,26 @@ while True:
     displaysurface.blit(player.image, player.rect)
     player.move()
     player.update()
-    player.hit(slime, enemy_group, hit_cooldown)
+    if hits:
+      # slime_atk.render(player)
+      player.hit(slime, hit_cooldown)
   else:
     player.kill()
-  
-  if player.attacking == True:
-    player.attack()
   
   if slime.hp != 0:
     slime.render()
     slime.hit(player_group, player, enemy_stun_cooldown)
   else:
     slime.kill()
-    
+
+  if player.attacking == True:
+    player.attack()
+
   if not slime.stunned:
     slime.move(player.pos)
+
+  # displaysurface.blit(player.image, player.rect)
+  # slime_atk.render(player)
   
   pygame.display.update()
   FPS_CLOCK.tick(FPS)
